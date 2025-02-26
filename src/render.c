@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static void load_xpm_images(t_mlx_data *data)
+static void load_xpm_images(t_game *data)
 {
     int width;
     int height;
@@ -21,7 +21,7 @@ static void load_xpm_images(t_mlx_data *data)
                                         PLAYER_IMG, &width, &height);
 }
 
-static void render_cell(t_mlx_data *data, char cell, int x, int y)
+static void render_cell(t_game *data, char cell, int x, int y)
 {
     int  is_player_on_exit;
     void *image;
@@ -48,7 +48,7 @@ static void render_cell(t_mlx_data *data, char cell, int x, int y)
                             x * IMG_WIDTH, y * IMG_HEIGHT);
 }
 
-void render_map(t_mlx_data *data)
+void render_map(t_game *data)
 {
     char **grid;
     int  x;

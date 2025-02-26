@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-int check_player_on_exit(t_mlx_data *data, int x, int y)
+int check_player_on_exit(t_game *data, int x, int y)
 {
     // Verifica se o jogador está na posição da saída
     if (data->map.player_x == x && data->map.player_y == y)
@@ -27,7 +27,7 @@ int is_cell_valid(char cell)
     return (1);
 }
 
-void check_exit(t_mlx_data *data)
+void check_exit(t_game *data)
 {
     // Verifica se o jogador coletou todos os itens e está na saída
     if (!data->map.collectible_count)

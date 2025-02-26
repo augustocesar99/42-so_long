@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static void read_map_file(t_mlx_data *data, int map_fd)
+static void read_map_file(t_game *data, int map_fd)
 {
     char *line;
     char *temp;
@@ -12,19 +12,19 @@ static void read_map_file(t_mlx_data *data, int map_fd)
     temp = ft_strdup("");
     while (line)
     {
-        data->map.height++;
+        data->environment.height++;
         temp = ft_strjoin_free(temp, line);
         free(line);
         line = get_next_line(map_fd);
     }
 
-    data->map.grid = ft_split(temp, '\n');
-    data->flooded_map.grid = ft_split(temp, '\n');
-    data->map.width = ft_strlen(data->map.grid[0]);
+    data->environment.grid = ft_split(temp, '\n');
+    data->pathfinder.grid = ft_split(temp, '\n');
+    data->environment.width = ft_strlen(data->environment.grid[0]);
     free(temp);
 }
 
-void read_map(t_mlx_data *data, char *map_path)
+void read_map(t_game *data, char *map_path)
 {
     int map_fd;
 
@@ -36,19 +36,19 @@ void read_map(t_mlx_data *data, char *map_path)
     close(map_fd);
 }
 
-static void validate_map_size(t_mlx_data *data, t_map *map)
+static void validate_map_size(t_game *data, t_world *map)
 {
     if (map->width * IMG_WIDTH > MAX_SCREEN_WIDTH || map->height * IMG_HEIGHT > MAX_SCREEN_HEIGHT)
         clean_exit(data, "The map size must be less than or equal to 30x17.\n");
 }
 
-static void validate_map_walls(t_mlx_data *data, t_map *map)
+static void validate_map_walls(t_game *data, t_world *map)
 {
     if (!is_a_wall(map->grid[0]) || !is_a_wall(map->grid[map->height - 1]))
         clean_exit(data, "The map must be closed by walls.\n");
 }
 
-void validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
+void validate_map(t_game *data, t_world *map, t_world *flooded_map)
 {
     int i;
 
@@ -74,7 +74,7 @@ void validate_map(t_mlx_data *data, t_map *map, t_map *flooded_map)
         clean_exit(data, "The map must contain a valid path.\n");
 }
 
-static void validate_line(t_mlx_data *data, t_map *map, char *line, int height)
+static void validate_line(t_game *data, t_world *map, char *line, int height)
 {
     int i;
 
@@ -103,7 +103,7 @@ static void validate_line(t_mlx_data *data, t_map *map, char *line, int height)
     }
 }
 
-static void has_valid_path(t_map *map, int x, int y)
+static void has_valid_path(t_world *map, int x, int y)
 {
     if (map->grid[y][x] == WALL_CELL || map->grid[y][x] == WALKED_CELL)
         return;

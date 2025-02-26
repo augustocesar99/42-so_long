@@ -1,24 +1,24 @@
 #include "so_long.h"
 
-static void initialize_game(t_mlx_data *data, char *map_path)
+static void initialize_game(t_game *data)
 {
     // Inicializa a conexão com o MLX
-    data->connect = mlx_init();
-    if (!data->connect)
+    data->graphics_engine = mlx_init();
+    if (!data->graphics_engine)
         clean_exit(data, "Error starting MLX. Please try again!\n");
 
     // Cria a janela do jogo
-    data->window = mlx_new_window(data->connect, data->map.width * IMG_WIDTH,
-                                 data->map.height * IMG_HEIGHT, "So Long");
-    if (!data->window)
+    data->game_window = mlx_new_window(data->graphics_engine, data->environment.width * IMG_WIDTH,
+                                       data->environment.height * IMG_HEIGHT, "So Long");
+    if (!data->game_window)
         clean_exit(data, "Error starting MLX. Please try again!\n");
 }
 
-static void setup_hooks(t_mlx_data *data)
+static void setup_hooks(t_game *data)
 {
     // Configura os hooks do MLX
-    mlx_hook(data->window, KeyPress, KeyPressMask, on_keypress, data);
-    mlx_hook(data->window, DestroyNotify, StructureNotifyMask, on_destroy, data);
+    mlx_hook(data->game_window, KeyPress, KeyPressMask, on_keypress, data);
+    mlx_hook(data->game_window, DestroyNotify, StructureNotifyMask, on_destroy, data);
 }
 
 static void validate_arguments(int argc, char *argv[])
@@ -35,23 +35,23 @@ static void validate_arguments(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-    t_mlx_data data; // Declara a variável localmente
-
-    // Inicializa a estrutura (se necessário)
-    ft_bzero(&data, sizeof(t_mlx_data));
+    t_game data;
 
     // Valida os argumentos da linha de comando
     validate_arguments(argc, argv);
 
+    // Inicializa a estrutura do jogo
+    ft_bzero(&data, sizeof(t_game));
+
     // Lê e valida o mapa
     read_map(&data, argv[1]);
-    validate_map(&data, &data.map, &data.flooded_map);
+    validate_map(&data, &data.environment, &data.pathfinder);
 
     // Inicializa o jogo (MLX e janela)
-    initialize_game(&data, argv[1]);
+    initialize_game(&data);
 
     // Exibe a contagem inicial de movimentos
-    ft_printf(MOVEMENT_LOG, data.player_movement_count);
+    ft_printf(data.step_message, data.adventurer.steps_made);
 
     // Renderiza o mapa
     render_map(&data);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     setup_hooks(&data);
 
     // Inicia o loop principal do MLX
-    mlx_loop(data.connect);
+    mlx_loop(data.graphics_engine);
 
     return (EXIT_SUCCESS);
 }

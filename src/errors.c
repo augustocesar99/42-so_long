@@ -18,7 +18,7 @@ void	clean_grid(char **mem)
 	free(mem);
 }
 
-void	clean_exit(t_mlx_data *data, char *msg)
+void	clean_exit(t_game *data, char *msg)
 {
 	ft_printf("Error\n");
 	ft_printf(msg);
