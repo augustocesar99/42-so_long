@@ -1,40 +1,29 @@
-
 #include "so_long.h"
 
-void	throw_error(char *msg)
+void throw_error(char *msg)
 {
-	ft_printf("Error\n");
-	ft_printf(msg);
-	exit(EXIT_FAILURE);
+    ft_printf("Error\n");
+    ft_printf(msg);
+    exit(EXIT_FAILURE);
 }
 
-void	clean_grid(char **mem)
+void clean_exit(t_game *data, char *msg)
 {
-	char	**temp;
-
-	temp = mem;
-	while (*temp)
-		free(*temp++);
-	free(mem);
+    ft_printf("Error\n");
+    ft_printf(msg);
+    clean_grid(data->environment.terrain);
+    clean_grid(data->pathfinder.terrain);
+    if (data->game_window)
+        mlx_destroy_window(data->graphics_engine, data->game_window);
+    if (data->graphics_engine)
+        mlx_destroy_display(data->graphics_engine);
+    exit(EXIT_FAILURE);
 }
 
-void	clean_exit(t_game *data, char *msg)
+void clean_exit_fd(int fd, char *msg)
 {
-	ft_printf("Error\n");
-	ft_printf(msg);
-	clean_grid(data->map.grid);
-	clean_grid(data->flooded_map.grid);
-	if (data->window)
-		mlx_destroy_window(data->connect, data->window);
-	if (data->connect)
-		mlx_destroy_display(data->connect);
-	exit(EXIT_FAILURE);
-}
-
-void	clean_exit_fd(int fd, char *msg)
-{
-	ft_printf("Error\n");
-	ft_printf(msg);
-	close(fd);
-	exit(EXIT_FAILURE);
+    ft_printf("Error\n");
+    ft_printf(msg);
+    close(fd);
+    exit(EXIT_FAILURE);
 }

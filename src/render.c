@@ -8,43 +8,39 @@ static void load_xpm_images(t_game *data)
     width = IMG_WIDTH;
     height = IMG_HEIGHT;
 
-    // Carrega todas as imagens necessárias
-    data->images[BACKGROUND_INDEX] = mlx_xpm_file_to_image(data->connect,
-                                          BACKGROUND_IMG, &width, &height);
-    data->images[WALL_INDEX] = mlx_xpm_file_to_image(data->connect,
-                                      WALL_IMG, &width, &height);
-    data->images[COLLECTIBLE_INDEX] = mlx_xpm_file_to_image(data->connect,
-                                            COLLECTIBLE_IMG, &width, &height);
-    data->images[EXIT_INDEX] = mlx_xpm_file_to_image(data->connect,
-                                      EXIT_IMG, &width, &height);
-    data->images[PLAYER_INDEX] = mlx_xpm_file_to_image(data->connect,
-                                        PLAYER_IMG, &width, &height);
+    data->environment.visuals[BACKGROUND].image_data = mlx_xpm_file_to_image(
+        data->graphics_engine, (char *)data->background_file, &width, &height);
+    data->environment.visuals[WALL_INDEX].image_data = mlx_xpm_file_to_image(
+        data->graphics_engine, (char *)data->wall_file, &width, &height);
+    data->environment.visuals[COLLECTIBLE_INDEX].image_data = mlx_xpm_file_to_image(
+        data->graphics_engine, (char *)data->treasure_file, &width, &height);
+    data->environment.visuals[EXIT_INDEX].image_data = mlx_xpm_file_to_image(
+        data->graphics_engine, (char *)data->portal_file, &width, &height);
+    data->environment.visuals[PLAYER_INDEX].image_data = mlx_xpm_file_to_image(
+        data->graphics_engine, (char *)data->hero_file, &width, &height);
 }
 
-static void render_cell(t_game *data, char cell, int x, int y)
+void render_image(t_game *data, char cell, int x, int y)
 {
     int  is_player_on_exit;
     void *image;
 
-    // Verifica se o jogador está na saída
     is_player_on_exit = check_player_on_exit(data, x, y);
 
-    // Determina qual imagem deve ser renderizada
-    if (cell == EMPTY_CELL)
-        image = data->images[BACKGROUND_INDEX];
-    else if (cell == WALL_CELL)
-        image = data->images[WALL_INDEX];
-    else if (cell == COLLECTIBLE_CELL)
-        image = data->images[COLLECTIBLE_INDEX];
-    else if (cell == EXIT_CELL && !is_player_on_exit)
-        image = data->images[EXIT_INDEX];
-    else if (cell == PLAYER_CELL || is_player_on_exit)
-        image = data->images[PLAYER_INDEX];
+    if (cell == EMPTY)
+        image = data->environment.visuals[BACKGROUND].image_data;
+    else if (cell == WALL)
+        image = data->environment.visuals[WALL_INDEX].image_data;
+    else if (cell == COLLECTIBLE)
+        image = data->environment.visuals[COLLECTIBLE_INDEX].image_data;
+    else if (cell == EXIT && !is_player_on_exit)
+        image = data->environment.visuals[EXIT_INDEX].image_data;
+    else if (cell == PLAYER || is_player_on_exit)
+        image = data->environment.visuals[PLAYER_INDEX].image_data;
     else
         return;
 
-    // Renderiza a imagem na janela
-    mlx_put_image_to_window(data->connect, data->window, image,
+    mlx_put_image_to_window(data->graphics_engine, data->game_window, image,
                             x * IMG_WIDTH, y * IMG_HEIGHT);
 }
 
@@ -54,20 +50,17 @@ void render_map(t_game *data)
     int  x;
     int  y;
 
-    // Carrega as imagens XPM
     load_xpm_images(data);
 
-    // Obtém o grid do mapa
-    grid = data->map.grid;
+    grid = data->environment.terrain;
     y = 0;
 
-    // Percorre o grid e renderiza cada célula
     while (grid[y])
     {
         x = 0;
         while (grid[y][x])
         {
-            render_cell(data, grid[y][x], x, y);
+            render_image(data, grid[y][x], x, y);
             x++;
         }
         y++;
