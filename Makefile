@@ -1,56 +1,76 @@
-NAME := so_long
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/12 11:19:15 by acesar-m          #+#    #+#              #
+#    Updated: 2025/03/18 11:42:32 by acesar-m         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC := clang
-CFLAGS := -Wall -Werror -Wextra
-RM := rm -rf
+NAME = so_long
+NAME_BONUS = so_long_bonus
 
-INCLUDES_DIR := includes
-LIBS_DIR := libs
-MLX := mlx
-LIBFT := $(LIBS_DIR)/libft
-LIBS := \
-	-L$(LIBS_DIR)/$(MLX) -l$(MLX)_Linux -L/usr/lib -L$(LIBFT) -lft -lXext -lX11
-INCLUDES := -I/usr/include -I$(INCLUDES_DIR) -I$(LIBS_DIR)/$(MLX) -I$(LIBFT)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g3 -I$(INC)
+XFLAGS =  -lmlx -lXext -lX11
+RM = rm -f
 
-HEADERS := $(INCLUDES_DIR)/so_long.h
+INC = ./include
+LIBFT = ./libs/libft
+MLX := ./libs/minilibx
 
-SRC_DIR := src
-SRCS := \
-	$(SRC_DIR)/main.c $(SRC_DIR)/hooks.c $(SRC_DIR)/map.c $(SRC_DIR)/render.c \
-	$(SRC_DIR)/controller.c $(SRC_DIR)/utils.c $(SRC_DIR)/errors.c
+GREEN=\033[0;32m
+YELLOW=\033[0;33m
+RESET=\033[0m
 
-OBJ_DIR := objects
-OBJECTS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+FILES = srcs/so_long.c srcs/valid.c srcs/valid_map_draw.c \
+		srcs/valid_map_draw2.c srcs/exit.c srcs/map_memory.c \
+		srcs/game_init.c srcs/take_sprites.c srcs/fill_map.c \
+		srcs/put_images.c srcs/gameplay.c srcs/steps.c \
+		srcs/ending_animation.c srcs/free_images.c
+OBJS = $(FILES:.c=.o)
 
-all: $(MLX) $(LIBFT) $(OBJ_DIR) $(NAME)
+BONUS_FILES = srcs/so_long.c srcs/valid.c srcs/valid_map_draw.c \
+		srcs/valid_map_draw2_bonus.c srcs/exit.c srcs/map_memory.c \
+		srcs/game_init.c srcs/take_sprites.c srcs/fill_map.c \
+		srcs/put_images.c srcs/gameplay.c srcs/steps.c \
+		srcs/ending_animation.c srcs/free_images.c
+BONUS_OBJS = $(BONUS_FILES:.c=.o)
 
-$(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
+all: $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT):
-	$(MAKE) -C $@
+$(NAME): $(OBJS)
+	@make -s -C $(LIBFT) > /dev/null
+	@make -s -C $(MLX) > /dev/null 2>&1
+	@$(CC) $(OBJS) $(CFLAGS) $(LIBFT)/libft.a -L$(MLX) -o $(NAME) $(XFLAGS) > /dev/null 2>&1
+	@printf "$(GREEN)Success!$(RESET)\n"
 
-$(MLX):
-	[ -f $(LIBS_DIR)/$(MLX)/libmlx_Linux.a ] || $(MAKE) -C $(LIBS_DIR)/$(MLX)
+bonus: $(NAME_BONUS)
 
-$(OBJ_DIR):
-	mkdir -p $@
-
+$(NAME_BONUS): $(BONUS_OBJS)
+	@make -s -C $(LIBFT) > /dev/null
+	@make -s -C $(MLX) > /dev/null 2>&1
+	@$(CC) $(BONUS_OBJS) $(CFLAGS) $(LIBFT)/libft.a -L$(MLX) -o $(NAME_BONUS) $(XFLAGS) > /dev/null 2>&1
+	@printf "$(GREEN)Success!$(RESET)\n"
+	
 clean:
-	$(MAKE) -C $(LIBFT) clean
-	$(MAKE) -C $(LIBS_DIR)/$(MLX) clean
-	$(RM) $(OBJ_DIR)
+	@make clean -C $(LIBFT) > /dev/null
+	@make clean -C $(MLX) > /dev/null 2>&1
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	$(MAKE) -C $(LIBFT) fclean
-	$(RM) $(NAME)
+	@make fclean -C $(LIBFT) > /dev/null
+	@$(RM) $(NAME) $(NAME_BONUS)
+	@printf "$(YELLOW)fclean Success!$(RESET)\n"
 
 re: fclean all
 
-norm:
-	norminette -R CheckForbiddenSourceHeader
+rebonus: fclean bonus
 
-.PHONY: all $(LIBFT) clean fclean re norm
+.PHONY: all clean fclean re bonus rebonus

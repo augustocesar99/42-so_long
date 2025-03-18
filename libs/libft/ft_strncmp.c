@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gcoqueir <gcoqueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 13:11:37 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/06 08:29:54 by lcosta-g         ###   ########.fr       */
+/*   Created: 2023/06/12 11:10:41 by gcoqueir          #+#    #+#             */
+/*   Updated: 2023/06/12 11:33:50 by gcoqueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,12 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	size_t	c;
 
-	if (!n || !s1 || !s2)
-		return (-1);
-	i = 0;
-	while (s1[i] && s1[i] == s2[i] && i < (n - 1))
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (n == 0)
+		return (0);
+	c = 0;
+	while ((s1[c] && s2[c]) != '\0' && s1[c] == s2[c] && c < n - 1)
+		c++;
+	return ((s1[c] - s2[c]));
 }
-
-/*
-#include <stdio.h>
-int	main(void)
-{
-	printf("\"abcde\" and \"abcdz\" with n = 5 returns %i\n",
-		ft_strncmp("abcde", "abcdz", 5)); // -21
-	printf("\"abcde\" and \"abcdz\" with n = 3 returns %i\n",
-		ft_strncmp("abcde", "abcdz", 3)); // 0
-	printf("\"abcdefgh\" and \"abcdwxyz\" with n = 4 returns %i\n",
-		ft_strncmp("abcdefgh", "abcdwxyz", 4));
-	printf("\"abcde\" and \"abcde\" with n = 5 returns %i\n",
-		ft_strncmp("abcde", "abcde", 5)); // 0
-	printf("\"edcba\" and \"abcde\" with n = 100 returns %i\n",
-		ft_strncmp("edcba", "abcde", 100)); // 4
-	return (0);
-}
-*/

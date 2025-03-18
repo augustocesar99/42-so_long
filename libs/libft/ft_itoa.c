@@ -3,71 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosta-g <lcosta-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gcoqueir <gcoqueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 13:17:06 by lcosta-g          #+#    #+#             */
-/*   Updated: 2024/10/31 12:11:35 by lcosta-g         ###   ########.fr       */
+/*   Created: 2023/05/08 10:56:40 by gcoqueir          #+#    #+#             */
+/*   Updated: 2023/05/08 10:56:41 by gcoqueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_numlen(int n)
-{
-	size_t	len;
-
-	if (!n)
-		return (1);
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
-
-static void	parse_number(long long n, char *str, size_t *i)
-{
-	if (n > 9)
-		parse_number(n / 10, str, i);
-	str[(*i)++] = (n % 10) + '0';
-}
+static char	*ft_convertion(size_t len, int n, char *str);
 
 char	*ft_itoa(int n)
 {
-	char		*str;
-	size_t		i;
-	long long	long_n;
+	char	*number;
+	int		temp;
+	size_t	len;
 
-	str = (char *)malloc(get_numlen(n) + 1);
-	if (!str)
-		return (NULL);
-	i = 0;
-	long_n = n;
-	if (long_n < 0)
+	len = 0;
+	temp = n;
+	if (n == -2147483648)
 	{
-		str[i++] = '-';
-		long_n = -long_n;
+		len++;
+		temp = -214748364;
 	}
-	parse_number(long_n, str, &i);
-	str[i] = '\0';
+	if (temp <= 0)
+	{
+		len++;
+		temp *= -1;
+	}
+	while (temp > 0)
+	{
+		len++;
+		temp = temp / 10;
+	}
+	number = malloc((len + 1) * sizeof(char));
+	ft_convertion(len - 1, n, number);
+	number[len] = '\0';
+	return (number);
+}
+
+static char	*ft_convertion(size_t len, int n, char *str)
+{
+	size_t		count;
+
+	count = len;
+	if (n == -2147483648)
+	{
+		str[0] = '-';
+		str[1] = '2';
+		n = 147483648;
+	}
+	if (n < 0)
+	{
+		str[0] = '-';
+		n *= -1;
+	}
+	if (n > 9)
+	{
+		ft_convertion(len - 1, n / 10, str);
+		n %= 10;
+	}
+	str[count] = n + '0';
 	return (str);
 }
-
-/*
-#include <stdio.h>
-int	main(void)
-{
-	printf("%s\n", ft_itoa(-2147483648));
-	printf("%s\n", ft_itoa(-42));
-	printf("%s\n", ft_itoa(-9));
-	printf("%s\n", ft_itoa(0));
-	printf("%s\n", ft_itoa(9));
-	printf("%s\n", ft_itoa(42));
-	printf("%s\n", ft_itoa(2147483647));
-	return (0);
-}
-*/

@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcosta-g <lcosta-g@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gcoqueir <gcoqueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 13:16:49 by lcosta-g          #+#    #+#             */
-/*   Updated: 2025/02/07 17:01:02 by lcosta-g         ###   ########.fr       */
+/*   Created: 2023/06/12 08:41:49 by gcoqueir          #+#    #+#             */
+/*   Updated: 2023/06/12 09:21:12 by gcoqueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*temp;
+	char	*dest;
 	size_t	s1_len;
-	size_t	temp_size;
+	size_t	s2_len;
+	int		count;
 
+	if (s1 == NULL)
+	{
+		s1 = malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
 	s1_len = ft_strlen(s1);
-	temp_size = s1_len + ft_strlen(s2) + 1;
-	temp = (char *)malloc(temp_size);
-	if (!temp)
+	s2_len = ft_strlen(s2);
+	dest = malloc((s1_len + s2_len + 1) * sizeof(char));
+	if (dest == NULL)
 		return (NULL);
-	ft_strlcpy(temp, s1, s1_len + 1);
-	ft_strlcat(temp, s2, temp_size);
-	return (temp);
+	count = -1;
+	while (s1[++count] != '\0')
+		dest[count] = s1[count];
+	count = -1;
+	while (s2[++count] != '\0')
+		dest[count + s1_len] = s2[count];
+	dest[count + s1_len] = '\0';
+	free(s1);
+	return (dest);
 }
-
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char	*s1 = "strjoin ";
-	char	*s2 = "example";
-
-	printf("%s\n", ft_strjoin(s1, s2));
-	return (0);
-}
-*/

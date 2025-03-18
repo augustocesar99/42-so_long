@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcoqueir <gcoqueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 08:41:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2023/06/20 14:13:09 by gcoqueir         ###   ########.fr       */
+/*   Created: 2023/06/12 08:47:12 by gcoqueir          #+#    #+#             */
+/*   Updated: 2023/06/12 08:47:23 by gcoqueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *s)
+int	print_char(char c)
 {
-	int	count;
-
-	count = 0;
-	while (s[count] != '\0')
-		count++;
-	return (count);
+	write (1, &c, 1);
+	return (1);
 }

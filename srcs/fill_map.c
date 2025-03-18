@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcoqueir <gcoqueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 08:41:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2023/06/20 14:13:09 by gcoqueir         ###   ########.fr       */
+/*   Created: 2023/06/21 14:09:24 by gcoqueir          #+#    #+#             */
+/*   Updated: 2023/06/26 11:10:04 by gcoqueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-int	ft_strlen(char *s)
+void	fill_map(t_map *map, t_game *game)
 {
-	int	count;
-
-	count = 0;
-	while (s[count] != '\0')
-		count++;
-	return (count);
+	put_player(map, game, game->spt, 'd');
+	put_coin_and_enemy(map, game, game->spt);
+	put_wall_and_ground(map, game, game->spt);
+	put_exit(map, game, game->spt);
 }
