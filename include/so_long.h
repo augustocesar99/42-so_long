@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 07:17:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2025/03/18 12:11:11 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:16:54 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct s_game
 	t_map		*map;
 }			t_game;
 
-void	valid_map_call(int argc, char *map_path, t_map *map);
+void	valid_open_map(int argc, char *map_path, t_map *map);
 void	get_map_size(t_map *map);
 void	allocation(t_map *map);
 void	valid_map_draw(t_map *map);

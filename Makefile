@@ -6,7 +6,7 @@
 #    By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 11:19:15 by acesar-m          #+#    #+#              #
-#    Updated: 2025/03/18 11:42:32 by acesar-m         ###   ########.fr        #
+#    Updated: 2025/03/19 11:14:02 by acesar-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@make -s -C $(LIBFT) > /dev/null
+	@make -s -C $(LIBFT)
 	@make -s -C $(MLX) > /dev/null 2>&1
 	@$(CC) $(OBJS) $(CFLAGS) $(LIBFT)/libft.a -L$(MLX) -o $(NAME) $(XFLAGS) > /dev/null 2>&1
 	@printf "$(GREEN)Success!$(RESET)\n"

@@ -6,13 +6,13 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/03/18 15:40:54 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:31:02 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	valid_map_call(int argc, char *map_path, t_map *map)
+void	valid_open_map(int argc, char *map_path, t_map *map)
 {
 	int		len;
 	char	temp[1];
@@ -34,29 +34,29 @@ void	valid_map_call(int argc, char *map_path, t_map *map)
 
 void	get_map_size(t_map *map)
 {
-    char	*line;
+	char	*line;
 
-    map->width = 0;
-    map->height = 0;
-    map->fd = open(map->file, O_RDONLY);
-    if (map->fd < 0)
-        error_check(3, "Error\nFailed to open map file!\n", 0, NULL);
-    map->check_format = 0;
-    while ((line = get_next_line(map->fd)) != NULL)
-    {
-        if (map->width == 0)
-            map->width = ft_strlen(line) - 1;
-        if (map->width != (int)(ft_strlen(line) - 1) && line[map->width] != '\0')
-            map->check_format = 1;
-        map->height++;
-        free(line);
-    }
-    if (map->check_format == 1)
-        error_check(4, "Error\nIt doesn't match the requirements!\n", 0, NULL);
-    if (map->height > 16 || map->width > 30)
-        error_check(5, "Error\nMap is too big!\n", 0, NULL);
-    map->size = map->width * map->height;
-    close(map->fd);
+	map->width = 0;
+	map->height = 0;
+	map->fd = open(map->file, O_RDONLY);
+	if (map->fd < 0)
+		error_check(3, "Error\nFailed to open map file!\n", 0, NULL);
+	map->check_format = 0;
+	while ((line = get_next_line(map->fd)) != NULL)
+	{
+		if (map->width == 0)
+			map->width = ft_strlen(line) - 1;
+		if (map->width != (int)(ft_strlen(line) - 1) && line[map->width] != '\0')
+			map->check_format = 1;
+		map->height++;
+		free(line);
+	}
+	if (map->check_format == 1)
+		error_check(4, "Error\nIt doesn't match the requirements!\n", 0, NULL);
+	if (map->height > 16 || map->width > 30)
+		error_check(5, "Error\nMap is too big!\n", 0, NULL);
+	map->size = map->width * map->height;
+	close(map->fd);
 }
 
 void read_map_lines(t_map *map)

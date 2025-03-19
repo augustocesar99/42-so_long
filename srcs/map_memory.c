@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/03/18 15:40:30 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:20:52 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	allocation(t_map *map)
 		{
 			j = -1;
 			while (++j < i)
-				free(map->map[i]);
+				free(map->map[j]);
 			free(map->map);
 			error_check(7, "Error\nFail to allocate memory!", 0, NULL);
 		}

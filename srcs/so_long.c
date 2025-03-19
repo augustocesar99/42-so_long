@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/03/18 15:40:35 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:56:20 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	game.spt = &spt;
 	map.file = argv[1];
 	game.steps = 0;
-	valid_map_call(argc, map.file, &map);
+	valid_open_map(argc, map.file, &map);
 	get_map_size(&map);
 	allocation(&map);
 	valid_map_draw(&map);
