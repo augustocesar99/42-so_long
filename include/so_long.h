@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 07:17:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2025/03/19 13:16:54 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:18:08 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,28 @@
 
 # define MAP_CHARS "01CEP"
 
-# define FINN_D "./textures/finn_down_64.xpm"
-# define FINN_L "textures/finn_left_64.xpm"
-# define FINN_R "textures/finn_right_64.xpm"
-# define FINN_U "textures/finn_up_64.xpm"
-# define EXIT1 "textures/exit1_64.xpm"
-# define EXIT2 "textures/exit2_64.xpm"
-# define EXIT3 "textures/exit3_64.xpm"
-# define GROUND "textures/ground_64.xpm"
-# define WALL "textures/wall_64.xpm"
-# define ICEKING "textures/iceking_64.xpm"
-# define BMO "textures/bmo_64.xpm"
-# define COIN "textures/coin_64.xpm"
-# define DEATH1 "textures/death1_64.xpm"
-# define DEATH2 "textures/death2_64.xpm"
-# define DEATH3 "textures/death3_64.xpm"
-# define DEATH4 "textures/death4_64.xpm"
-# define DEATH5 "textures/death5_64.xpm"
-# define WIN1 "textures/win1_64.xpm"
-# define WIN2 "textures/win2_64.xpm"
-# define WIN3 "textures/win3_64.xpm"
-# define WIN4 "textures/win4_64.xpm"
-# define WIN5 "textures/win5_64.xpm"
+# define FINN_D "./textures/person_down.xpm"
+# define FINN_L "textures/person_left.xpm"
+# define FINN_R "textures/person_right.xpm"
+# define FINN_U "textures/person_up.xpm"
+# define EXIT1 "textures/exit1.xpm"
+# define EXIT2 "textures/exit2.xpm"
+# define EXIT3 "textures/exit3.xpm"
+# define GROUND "textures/ground.xpm"
+# define WALL "textures/wall.xpm"
+# define ICEKING "textures/zombie.xpm"
+# define BMO "textures/count.xpm"
+# define COIN "textures/coin.xpm"
+# define DEATH1 "textures/death1.xpm"
+# define DEATH2 "textures/death2.xpm"
+# define DEATH3 "textures/death3.xpm"
+# define DEATH4 "textures/death4.xpm"
+# define DEATH5 "textures/death5.xpm"
+# define WIN1 "textures/win1.xpm"
+# define WIN2 "textures/win2.xpm"
+# define WIN3 "textures/win3.xpm"
+# define WIN4 "textures/win4.xpm"
+# define WIN5 "textures/win5.xpm"
 
 typedef struct s_map
 {
