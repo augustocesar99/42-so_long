@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/03/18 15:40:32 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:30:42 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	put_coin_and_enemy(t_map *map, t_game *game, t_sprite *spt)
 				mlx_put_image_to_window(game->mlx, game->window, spt->coin,
 					x * 64, y * 64);
 			else if (map->map[y][x] == 'X')
-				mlx_put_image_to_window(game->mlx, game->window, spt->iceking,
+				mlx_put_image_to_window(game->mlx, game->window, spt->zombie,
 					x * 64, y * 64);
 		}
 	}

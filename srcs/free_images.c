@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/03/18 15:40:22 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:31:14 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->spt->wall);
 	if (game->spt->ground != NULL)
 		mlx_destroy_image(game->mlx, game->spt->ground);
-	if (game->spt->iceking != NULL)
-		mlx_destroy_image(game->mlx, game->spt->iceking);
+	if (game->spt->zombie != NULL)
+		mlx_destroy_image(game->mlx, game->spt->zombie);
 	if (game->spt->bmo != NULL)
 		mlx_destroy_image(game->mlx, game->spt->bmo);
 }

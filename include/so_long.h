@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 07:17:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2025/04/08 12:04:46 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:26:31 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_sprite
 	void	*exit3;
 	void	*ground;
 	void	*wall;
-	void	*iceking;
+	void	*zombie;
 	void	*bmo;
 	void	*coin;
 	void	*death1;
