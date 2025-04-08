@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/03/18 15:40:49 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:10:53 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_for_dif_char(t_map *map)
 	return (1);
 }
 
-void	check_for_nopath(t_map *map, int y, int x)
+void	get_map_path(t_map *map, int y, int x)
 {
 	if (map->map[y][x] == 'C')
 		map->coin_count++;
@@ -54,11 +54,11 @@ void	check_for_nopath(t_map *map, int y, int x)
 		map->map[y][x - 1] == 'E' || map->map[y][x + 1] == 'E')
 		map->path_check = 1;
 	if (ft_strchr("1X", map->map[y - 1][x]) == NULL)
-		check_for_nopath(map, y - 1, x);
+		get_map_path(map, y - 1, x);
 	if (ft_strchr("1X", map->map[y + 1][x]) == NULL)
-		check_for_nopath(map, y + 1, x);
+		get_map_path(map, y + 1, x);
 	if (ft_strchr("1X", map->map[y][x - 1]) == NULL)
-		check_for_nopath(map, y, x - 1);
+		get_map_path(map, y, x - 1);
 	if (ft_strchr("1X", map->map[y][x + 1]) == NULL)
-		check_for_nopath(map, y, x + 1);
+		get_map_path(map, y, x + 1);
 }
