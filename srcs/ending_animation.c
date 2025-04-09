@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/03/18 15:40:12 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:17:02 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	bad_ending(t_map *map, t_game *game, t_sprite *spt)
 
 	repeat = 0;
 	while (repeat++ < 8000)
-		mlx_put_image_to_window(game->mlx, game->window, spt->finn_d,
+		mlx_put_image_to_window(game->mlx, game->window, spt->person_d,
 			map->player_x * 64, map->player_y * 64);
 	while (repeat++ < 16000)
 		mlx_put_image_to_window(game->mlx, game->window, spt->death1,

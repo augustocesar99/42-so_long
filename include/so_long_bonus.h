@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 07:17:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2025/04/09 11:06:47 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:21:11 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 
 # define MAP_CHARS "01CEPX"
 
-# define FINN_D "./textures/finn_down_64.xpm"
-# define FINN_L "textures/finn_left_64.xpm"
-# define FINN_R "textures/finn_right_64.xpm"
-# define FINN_U "textures/finn_up_64.xpm"
+# define PERSON_D "./textures/finn_down_64.xpm"
+# define PERSON_L "textures/finn_left_64.xpm"
+# define PERSON_R "textures/finn_right_64.xpm"
+# define PERSON_U "textures/finn_up_64.xpm"
 # define EXIT1 "textures/exit1_64.xpm"
 # define EXIT2 "textures/exit2_64.xpm"
 # define EXIT3 "textures/exit3_64.xpm"
 # define GROUND "textures/ground_64.xpm"
 # define WALL "textures/wall_64.xpm"
-# define ICEKING "textures/iceking_64.xpm"
-# define BMO "textures/bmo_64.xpm"
+# define ZOMBIE "textures/iceking_64.xpm"
+# define TEL "textures/bmo_64.xpm"
 # define COIN "textures/coin_64.xpm"
 # define DEATH1 "textures/death1_64.xpm"
 # define DEATH2 "textures/death2_64.xpm"
@@ -69,17 +69,17 @@ typedef struct s_map
 
 typedef struct s_sprite
 {
-	void	*finn_d;
-	void	*finn_l;
-	void	*finn_r;
-	void	*finn_u;
+	void	*person_d;
+	void	*person_l;
+	void	*person_r;
+	void	*person_u;
 	void	*exit1;
 	void	*exit2;
 	void	*exit3;
 	void	*ground;
 	void	*wall;
 	void	*iceking;
-	void	*bmo;
+	void	*tel;
 	void	*coin;
 	void	*death1;
 	void	*death2;

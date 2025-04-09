@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/04/08 15:20:38 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:17:57 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 void	put_player(t_map *map, t_game *game, t_sprite *spt, char direction)
 {
 	if (direction == 'r')
-		mlx_put_image_to_window(game->mlx, game->window, spt->finn_r,
+		mlx_put_image_to_window(game->mlx, game->window, spt->person_r,
 			map->player_x * 64, map->player_y * 64);
 	else if (direction == 'l')
-		mlx_put_image_to_window(game->mlx, game->window, spt->finn_l,
+		mlx_put_image_to_window(game->mlx, game->window, spt->person_l,
 			map->player_x * 64, map->player_y * 64);
 	else if (direction == 'u')
-		mlx_put_image_to_window(game->mlx, game->window, spt->finn_u,
+		mlx_put_image_to_window(game->mlx, game->window, spt->person_u,
 			map->player_x * 64, map->player_y * 64);
 	else if (direction == 'd')
-		mlx_put_image_to_window(game->mlx, game->window, spt->finn_d,
+		mlx_put_image_to_window(game->mlx, game->window, spt->person_d,
 			map->player_x * 64, map->player_y * 64);
 }
 
@@ -63,7 +63,7 @@ void	put_wall_and_ground(t_map *map, t_game *game, t_sprite *spt)
 			if (map->map[y][x] == '1')
 			{
 				if (y == 0 && x == 0)
-					mlx_put_image_to_window(game->mlx, game->window, spt->bmo,
+					mlx_put_image_to_window(game->mlx, game->window, spt->tel,
 						0, 0);
 				else
 					mlx_put_image_to_window(game->mlx, game->window, spt->wall,

@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 07:17:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2025/04/09 11:06:47 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:21:08 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 
 # define MAP_CHARS "01CEP"
 
-# define FINN_D "./textures/person_down.xpm"
-# define FINN_L "textures/person_left.xpm"
-# define FINN_R "textures/person_right.xpm"
-# define FINN_U "textures/person_up.xpm"
+# define PERSON_D "./textures/person_down.xpm"
+# define PERSON_L "textures/person_left.xpm"
+# define PERSON_R "textures/person_right.xpm"
+# define PERSON_U "textures/person_up.xpm"
 # define EXIT1 "textures/exit1.xpm"
 # define EXIT2 "textures/exit2.xpm"
 # define EXIT3 "textures/exit3.xpm"
 # define GROUND "textures/ground.xpm"
 # define WALL "textures/wall.xpm"
-# define ICEKING "textures/zombie.xpm"
-# define BMO "textures/count.xpm"
+# define ZOMBIE "textures/zombie.xpm"
+# define TEL "textures/count.xpm"
 # define COIN "textures/coin.xpm"
 # define DEATH1 "textures/death1.xpm"
 # define DEATH2 "textures/death2.xpm"
@@ -69,17 +69,17 @@ typedef struct s_map
 
 typedef struct s_sprite
 {
-	void	*finn_d;
-	void	*finn_l;
-	void	*finn_r;
-	void	*finn_u;
+	void	*person_d;
+	void	*person_l;
+	void	*person_r;
+	void	*person_u;
 	void	*exit1;
 	void	*exit2;
 	void	*exit3;
 	void	*ground;
 	void	*wall;
 	void	*zombie;
-	void	*bmo;
+	void	*tel;
 	void	*coin;
 	void	*death1;
 	void	*death2;

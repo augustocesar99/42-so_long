@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/04/08 14:31:14 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:17:57 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	free_images(t_game *game)
 {
-	if (game->spt->finn_d != NULL)
-		mlx_destroy_image(game->mlx, game->spt->finn_d);
-	if (game->spt->finn_l != NULL)
-		mlx_destroy_image(game->mlx, game->spt->finn_l);
-	if (game->spt->finn_r != NULL)
-		mlx_destroy_image(game->mlx, game->spt->finn_r);
-	if (game->spt->finn_u != NULL)
-		mlx_destroy_image(game->mlx, game->spt->finn_u);
+	if (game->spt->person_d != NULL)
+		mlx_destroy_image(game->mlx, game->spt->person_d);
+	if (game->spt->person_l != NULL)
+		mlx_destroy_image(game->mlx, game->spt->person_l);
+	if (game->spt->person_r != NULL)
+		mlx_destroy_image(game->mlx, game->spt->person_r);
+	if (game->spt->person_u != NULL)
+		mlx_destroy_image(game->mlx, game->spt->person_u);
 	if (game->spt->coin != NULL)
 		mlx_destroy_image(game->mlx, game->spt->coin);
 	if (game->spt->wall != NULL)
@@ -30,8 +30,8 @@ void	free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->spt->ground);
 	if (game->spt->zombie != NULL)
 		mlx_destroy_image(game->mlx, game->spt->zombie);
-	if (game->spt->bmo != NULL)
-		mlx_destroy_image(game->mlx, game->spt->bmo);
+	if (game->spt->tel != NULL)
+		mlx_destroy_image(game->mlx, game->spt->tel);
 }
 
 void	free_exit(t_game *game)

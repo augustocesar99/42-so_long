@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/04/08 14:26:31 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:21:19 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	take_sprites(t_game *game, t_sprite *spt)
 {
-	spt->finn_d = mlx_xpm_file_to_image(game->mlx, FINN_D, &game->img_width,
+	spt->person_d = mlx_xpm_file_to_image(game->mlx, PERSON_D, &game->img_width,
 			&game->img_height);
-	spt->finn_l = mlx_xpm_file_to_image(game->mlx, FINN_L, &game->img_width,
+	spt->person_l = mlx_xpm_file_to_image(game->mlx, PERSON_L, &game->img_width,
 			&game->img_height);
-	spt->finn_r = mlx_xpm_file_to_image(game->mlx, FINN_R, &game->img_width,
+	spt->person_r = mlx_xpm_file_to_image(game->mlx, PERSON_R, &game->img_width,
 			&game->img_height);
-	spt->finn_u = mlx_xpm_file_to_image(game->mlx, FINN_U, &game->img_width,
+	spt->person_u = mlx_xpm_file_to_image(game->mlx, PERSON_U, &game->img_width,
 			&game->img_height);
 	spt->coin = mlx_xpm_file_to_image(game->mlx, COIN, &game->img_width,
 			&game->img_height);
@@ -28,13 +28,13 @@ void	take_sprites(t_game *game, t_sprite *spt)
 			&game->img_height);
 	spt->wall = mlx_xpm_file_to_image(game->mlx, WALL, &game->img_width,
 			&game->img_height);
-	spt->zombie = mlx_xpm_file_to_image(game->mlx, ICEKING, &game->img_width,
+	spt->zombie = mlx_xpm_file_to_image(game->mlx, ZOMBIE, &game->img_width,
 			&game->img_height);
-	spt->bmo = mlx_xpm_file_to_image(game->mlx, BMO, &game->img_width,
+	spt->tel = mlx_xpm_file_to_image(game->mlx, TEL, &game->img_width,
 			&game->img_height);
-	if (spt->finn_d == NULL || spt->finn_l == NULL || spt->finn_r == NULL
-		|| spt->finn_u == NULL || spt->coin == NULL || spt->ground == NULL
-		|| spt->wall == NULL || spt->zombie == NULL || spt->bmo == NULL)
+	if (spt->person_d == NULL || spt->person_l == NULL || spt->person_r == NULL
+		|| spt->person_u == NULL || spt->coin == NULL || spt->ground == NULL
+		|| spt->wall == NULL || spt->zombie == NULL || spt->tel == NULL)
 		error_check(11, "Error\nFail to take images!\n", 2, game);
 	take_exit(game, spt);
 	take_win(game, spt);
