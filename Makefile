@@ -6,7 +6,7 @@
 #    By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 11:19:15 by acesar-m          #+#    #+#              #
-#    Updated: 2025/03/19 11:14:02 by acesar-m         ###   ########.fr        #
+#    Updated: 2025/04/09 11:14:01 by acesar-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,14 @@ YELLOW=\033[0;33m
 RESET=\033[0m
 
 FILES = srcs/so_long.c srcs/valid.c srcs/valid_map_draw.c \
-		srcs/valid_map_draw2.c srcs/exit.c srcs/map_memory.c \
+		srcs/valid_map_draw2.c srcs/exit.c srcs/free_and_memory.c \
 		srcs/game_init.c srcs/take_sprites.c srcs/fill_map.c \
 		srcs/put_images.c srcs/gameplay.c srcs/steps.c \
 		srcs/ending_animation.c srcs/free_images.c
 OBJS = $(FILES:.c=.o)
 
 BONUS_FILES = srcs/so_long.c srcs/valid.c srcs/valid_map_draw.c \
-		srcs/valid_map_draw2_bonus.c srcs/exit.c srcs/map_memory.c \
+		srcs/valid_map_draw2_bonus.c srcs/exit.c srcs/free_and_memory.c \
 		srcs/game_init.c srcs/take_sprites.c srcs/fill_map.c \
 		srcs/put_images.c srcs/gameplay.c srcs/steps.c \
 		srcs/ending_animation.c srcs/free_images.c

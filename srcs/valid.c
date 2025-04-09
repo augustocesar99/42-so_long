@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/04/08 11:57:32 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:06:47 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	valid_map_draw(t_map *map)
 	}
 	copy.height = map->height;
 	copy.width = map->width;
-	make_allocation(&copy);
+	allocs(&copy);
 	copy_map(&copy, map);
 	copy.path_check = 0;
 	copy.coin_count = 0;

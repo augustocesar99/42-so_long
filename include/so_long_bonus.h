@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 07:17:10 by gcoqueir          #+#    #+#             */
-/*   Updated: 2025/04/08 12:04:46 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:06:47 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_game
 
 void	valid_map_call(int argc, char *map_path, t_map *map);
 void	get_map_size(t_map *map);
-void	make_allocation(t_map *map);
+void	allocs(t_map *map);
 void	valid_map_draw(t_map *map);
 void	draw_map(t_map *map);
 int		check_for_wall_surround(t_map *map);

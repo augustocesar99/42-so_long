@@ -6,13 +6,13 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/04/08 11:57:32 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:06:47 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	make_allocation(t_map *map)
+void	allocs(t_map *map)
 {
 	int	i;
 	int	j;
