@@ -6,7 +6,7 @@
 /*   By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:22 by acesar-m          #+#    #+#             */
-/*   Updated: 2025/04/09 11:06:47 by acesar-m         ###   ########.fr       */
+/*   Updated: 2025/04/09 12:16:18 by acesar-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	valid_open_map(int argc, char *map_path, t_map *map)
 	char	temp[1];
 
 	if (argc != 2)
-		error_check(1, "Error\nInput must be: ./so_long maps/<file.ber>\n", 0, NULL);
+		error_check(1, "Error\nInput must be: ./so_long maps/<file.ber>\n",
+			0, NULL);
 	len = ft_strlen(map_path);
 	if (len <= 9 || (ft_strncmp(&map_path[len - 4], ".ber", 4) != 0))
 		error_check(2, "Error\nInvalid map name!\n", 0, NULL);
@@ -32,45 +33,21 @@ void	valid_open_map(int argc, char *map_path, t_map *map)
 	close(map->fd);
 }
 
-void	get_map_size(t_map *map)
+void	read_map_lines(t_map *map)
 {
 	char	*line;
 
-	map->width = 0;
-	map->height = 0;
-	map->fd = open(map->file, O_RDONLY);
-	if (map->fd < 0)
-		error_check(3, "Error\nFailed to open map file!\n", 0, NULL);
-	map->check_format = 0;
-	while ((line = get_next_line(map->fd)) != NULL)
+	line = get_next_line(map->fd);
+	while (line != NULL)
 	{
 		if (map->width == 0)
 			map->width = ft_strlen(line) - 1;
-		if (map->width != (int)(ft_strlen(line) - 1) && line[map->width] != '\0')
+		if (map->width != (int)(ft_strlen(line) - 1)
+				&& line[map->width] != '\0')
 			map->check_format = 1;
 		map->height++;
 		free(line);
-	}
-	if (map->check_format == 1)
-		error_check(4, "Error\nIt doesn't match the requirements!\n", 0, NULL);
-	if (map->height > 16 || map->width > 30)
-		error_check(5, "Error\nMap is too big!\n", 0, NULL);
-	map->size = map->width * map->height;
-	close(map->fd);
-}
-
-void read_map_lines(t_map *map)
-{
-	char *line;
-
-	while ((line = get_next_line(map->fd)) != NULL)
-	{
-		if (map->width == 0)
-			map->width = ft_strlen(line) - 1;
-		if (map->width != (int)(ft_strlen(line) - 1) && line[map->width] != '\0')
-			map->check_format = 1;
-		map->height++;
-		free(line);
+		line = get_next_line(map->fd);
 	}
 }
 
@@ -85,7 +62,7 @@ void	valid_map_draw(t_map *map)
 		|| check_for_dif_char(map) == 0 || map->check_format == 1)
 	{
 		free_map(map);
-		error_check(8, "Error\nThe map does not meet the requirements!\n", 0, NULL);
+		error_check(8, "Error\nMap does not meet the requirements!\n", 0, NULL);
 	}
 	copy.height = map->height;
 	copy.width = map->width;
