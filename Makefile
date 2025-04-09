@@ -6,7 +6,7 @@
 #    By: acesar-m <acesar-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 11:19:15 by acesar-m          #+#    #+#              #
-#    Updated: 2025/04/09 12:11:14 by acesar-m         ###   ########.fr        #
+#    Updated: 2025/04/09 14:25:58 by acesar-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,25 +46,25 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@make -s -C $(LIBFT)
-	@make -s -C $(MLX)
-	@$(CC) $(OBJS) $(CFLAGS) $(LIBFT)/libft.a -L$(MLX) -o $(NAME) $(XFLAGS)
+	@make -s -C $(LIBFT) > /dev/null 2>&1
+	@make -s -C $(MLX) > /dev/null 2>&1
+	@$(CC) $(OBJS) $(CFLAGS) $(LIBFT)/libft.a -L$(MLX) -o $(NAME) $(XFLAGS) > /dev/null 2>&1
 	@printf "$(GREEN)Success!$(RESET)\n"
 
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(BONUS_OBJS)
-	@make -s -C $(LIBFT)
-	@make -s -C $(MLX)
+	@make -s -C $(LIBFT) > /dev/null 2>&1
+	@make -s -C $(MLX) > /dev/null 2>&1
 	@$(CC) $(BONUS_OBJS) $(CFLAGS) $(LIBFT)/libft.a -L$(MLX) -o $(NAME_BONUS) $(XFLAGS)
 	
 clean:
-	@make clean -C $(LIBFT)
-	@make clean -C $(MLX)
+	@make clean -C $(LIBFT) > /dev/null 2>&1
+	@make clean -C $(MLX) > /dev/null 2>&1
 	@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	@make fclean -C $(LIBFT)
+	@make fclean -C $(LIBFT) > /dev/null 2>&1
 	@$(RM) $(NAME) $(NAME_BONUS)
 	@printf "$(YELLOW)fclean Success!$(RESET)\n"
 
